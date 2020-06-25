@@ -12,12 +12,12 @@ export default function Book() {
         color: 'primary',
         className: classes.fab,
         icon: <AddIcon />,
-        label: 'Add',
+        label: 'Add'
     }
 
     return (
         <>
-            <Fab aria-label={fab.label} className={fab.className} color={fab.color}>
+            <Fab aria-label={fab.label} className={fab.className} color={fab.color} style={{ background: '#2161CC' }}>
                 {fab.icon}
             </Fab>
         </>
