@@ -1,6 +1,6 @@
 # Bookshelf
 
-Bookshelf is a web application to organize the books that you are reading, just read or want to read.
+Bookshelf is a web application to organize the books that you are reading, just readed or want to read.
 
 
 ## Installation
