@@ -1,14 +1,19 @@
-import React from 'react'
+import React from 'react';
 
-import GlobalStyle from './styles/global'
+import Navbar from './components/Navbar';
+import FloatAddButton from './components/FloatAddButton';
 
-import Routes from './routes'
+import Routes from './routes';
+
+import GlobalStyle from './styles/global';
 
 function App() {
   return (
     <>
+      <Navbar />
       <Routes />
       <GlobalStyle />
+      <FloatAddButton />
     </>
   );
 }

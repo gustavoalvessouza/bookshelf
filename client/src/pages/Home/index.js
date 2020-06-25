@@ -1,26 +1,37 @@
 import React from 'react';
 
-import Container from '@material-ui/core/Container';
+import { Container, Grid } from '@material-ui/core';
 
-import Navbar from '../../components/Navbar'
 import Book from '../../components/Book'
-import FloatAddButton from '../../components/FloatAddButton'
+
+import { useStyles } from './styles'
+import readingSvg from '../../assets/images/reading.svg'
 
 export default function Home() {
+    const style = useStyles();
+
+    const books = []
+
     return (
         <>
-            <Navbar />
-
-            <Container maxWidth="sm">
-                <Book
-                    title="Clean Code"
-                    author="Robert Cecil Martin"
-                    description="Mesmo um código ruim pode funcionar. Mas se ele não for limpo, pode acabar com uma empresa de desenvolvimento."
-                    image="https://images-na.ssl-images-amazon.com/images/I/41jEbK-jG+L._SX374_BO1,204,203,200_.jpg"
-                />
+            <Container maxWidth="md" className={style.root}>
+                <Grid container spacing={3}>
+                    {books.length > 0
+                        ? books.map(book =>
+                            <Grid item sm={4} xs={6}>
+                                <Book
+                                    key={book.id}
+                                    title={book.title}
+                                    description={book.description}
+                                    image={book.image}
+                                />
+                            </Grid>
+                        )
+                        : <img src={readingSvg} alt="No books" className={style.noBooks} />
+                    }
+                </Grid>
             </Container>
 
-            <FloatAddButton />
         </>
     );
 };
