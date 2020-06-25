@@ -1,13 +1,9 @@
 import React from 'react';
 
-import { Link } from 'react-router-dom'
-
 import { Container, Grid } from '@material-ui/core';
 
 import Book from '../../components/Book'
-
 import Navbar from '../../components/Navbar'
-import FloatAddButton from '../../components/FloatAddButton'
 
 import { useStyles } from './styles'
 import readingSvg from '../../assets/images/reading.svg'
@@ -27,10 +23,9 @@ export default function Home() {
     return (
         <>
             <Navbar />
-            
-            <Container maxWidth="md" className={style.root}>
 
-                <Link to="/new" className={style.link}><h2 className={style.categoryTitle}>No category</h2></Link>
+            <Container maxWidth="md" className={style.root}>
+                {/* <Link to="/new" className={style.link}><h2 className={style.categoryTitle}>No category</h2></Link> */}
 
                 <Grid container spacing={3}>
                     {booksByCategory(null).length > 0
@@ -49,8 +44,6 @@ export default function Home() {
                     }
                 </Grid>
             </Container>
-
-            <FloatAddButton />
         </>
     );
 };

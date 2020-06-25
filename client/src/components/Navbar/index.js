@@ -50,10 +50,12 @@ export default function Navbar() {
                     </ListItem>
                 </Link>
 
-                <ListItem button key="Book">
-                    <BookIcon color="action" className={classes.bookIcon} />
-                    <ListItemText primary="Books" />
-                </ListItem>
+                <Link to="/new" className={classes.link}>
+                    <ListItem button key="Home">
+                        <BookIcon color="action" className={classes.bookIcon} />
+                        <ListItemText primary="Books" className={classes.linkText} />
+                    </ListItem>
+                </Link>
             </List>
         </>
     );
