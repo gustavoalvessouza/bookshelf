@@ -7,6 +7,13 @@ export const useStyles = makeStyles({
     noBooks: {
         maxWidth: '50%',
         marginTop: '10rem',
+        marginBottom: '5rem',
         margin: '0 auto'
-    }
+    },
+    categoryTitle: {
+        marginTop: '1.5rem',
+        marginBottom: '1rem',
+        color: '#4F4F4F'
+    },
+    link: { textDecoration: 'none' }
 });

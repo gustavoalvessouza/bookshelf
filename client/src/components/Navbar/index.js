@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom'
+
 import {
     AppBar,
     CssBaseline,
@@ -34,15 +36,19 @@ export default function Navbar() {
     const drawer = (
         <>
             <List>
-                <ListItem button key="Home">
-                    <HomeIcon color="action" className={classes.homeIcon} />
-                    <ListItemText primary="Home"/>
-                </ListItem>
+                <Link to="/" className={classes.link}>
+                    <ListItem button key="Home">
+                        <HomeIcon color="action" className={classes.homeIcon} />
+                        <ListItemText primary="Home" className={classes.linkText} />
+                    </ListItem>
+                </Link>
 
-                <ListItem button key="Categories">
-                    <FilterListIcon color="action" className={classes.categoryIcon} />
-                    <ListItemText primary="Filter books" />
-                </ListItem>
+                <Link to="/new" className={classes.link}>
+                    <ListItem button key="Home">
+                        <FilterListIcon color="action" className={classes.categoryIcon} />
+                        <ListItemText primary="Filter books" className={classes.linkText} />
+                    </ListItem>
+                </Link>
 
                 <ListItem button key="Book">
                     <BookIcon color="action" className={classes.bookIcon} />
@@ -68,8 +74,8 @@ export default function Navbar() {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" noWrap>
-                        Bookshelf
-                     </Typography>
+                        <Link to="/" className={classes.link}>Bookshelf</Link>
+                    </Typography>
                 </Toolbar>
             </AppBar>
 
@@ -94,7 +100,7 @@ export default function Navbar() {
                     </Drawer>
                 </Hidden>
 
-                <Hidden xsDown implementation="css">
+                <Hidden mdDown implementation="css">
                     <Drawer
                         className={classes.drawer}
                         variant="permanent"

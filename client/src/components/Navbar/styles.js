@@ -37,4 +37,6 @@ export const useStyles = makeStyles(theme => ({
     homeIcon: { marginRight: '10px', color: '#2161CC'  },
     categoryIcon: { marginRight: '10px', color: '#2161CC'  },
     bookIcon: { marginRight: '10px', color: '#2161CC' },
+    link: { textDecoration: 'none', color: '#fff' },
+    linkText: { color: '#000' }
 }));
