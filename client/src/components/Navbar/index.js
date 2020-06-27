@@ -43,17 +43,17 @@ export default function Navbar() {
                     </ListItem>
                 </Link>
 
-                <Link to="/new" className={classes.link}>
+                <Link to="/books/category" className={classes.link}>
                     <ListItem button key="Home">
                         <FilterListIcon color="action" className={classes.categoryIcon} />
                         <ListItemText primary="Filter books" className={classes.linkText} />
                     </ListItem>
                 </Link>
 
-                <Link to="/new" className={classes.link}>
+                <Link to="/books/add" className={classes.link}>
                     <ListItem button key="Home">
                         <BookIcon color="action" className={classes.bookIcon} />
-                        <ListItemText primary="Books" className={classes.linkText} />
+                        <ListItemText primary="Add new book" className={classes.linkText} />
                     </ListItem>
                 </Link>
             </List>

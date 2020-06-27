@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { Container, Grid } from '@material-ui/core';
+import { Container, Grid, Box } from '@material-ui/core';
+import { Link } from 'react-router-dom'
 
 import Book from '../../components/Book'
 import Navbar from '../../components/Navbar'
@@ -16,8 +17,8 @@ export default function Home() {
     }
 
     const books = [
-        // { id: 1, title: 'Clean Code', description: 'Descrição', category: 'reading', image: 'https://m.media-amazon.com/images/I/41SH-SvWPxL.jpg' },
-        // { id: 2, title: 'Clean Code', description: 'Descrição', category: null, image: 'https://m.media-amazon.com/images/I/41SH-SvWPxL.jpg' },
+        { id: 1, title: 'Clean Code', description: 'Descrição', category: null, image: 'https://m.media-amazon.com/images/I/41SH-SvWPxL.jpg' },
+        { id: 2, title: 'Clean Code', description: 'Descrição', category: null, image: 'https://m.media-amazon.com/images/I/41SH-SvWPxL.jpg' },
     ]
 
     return (
@@ -25,8 +26,6 @@ export default function Home() {
             <Navbar />
 
             <Container maxWidth="md" className={style.root}>
-                {/* <Link to="/new" className={style.link}><h2 className={style.categoryTitle}>No category</h2></Link> */}
-
                 <Grid container spacing={3}>
                     {booksByCategory(null).length > 0
                         ? booksByCategory(null)
@@ -41,6 +40,81 @@ export default function Home() {
                                 </Grid>
                             )
                         : <img src={readingSvg} alt="No books" className={style.noBooks} />
+                    }
+                </Grid>
+
+                {booksByCategory('reading').length > 0
+                    ?
+                    <Box>
+                        <Link to="/books/category" className={style.link}><h2 className={style.categoryTitle}>Reading</h2></Link>
+                    </Box>
+                    : null
+                }
+
+                <Grid container spacing={3}>
+                    {booksByCategory('reading').length > 0
+                        ? booksByCategory('reading')
+                            .map(book =>
+                                <Grid item sm={4} xs={6}>
+                                    <Book
+                                        key={book.id}
+                                        title={book.title}
+                                        description={book.description}
+                                        image={book.image}
+                                    />
+                                </Grid>
+                            )
+                        : null
+                    }
+                </Grid>
+
+                {booksByCategory('wantToRead').length > 0
+                    ?
+                    <Box>
+                        <Link to="/books/category" className={style.link}><h2 className={style.categoryTitle}>Want to read</h2></Link>
+                    </Box>
+                    : null
+                }
+
+                <Grid container spacing={3}>
+                    {booksByCategory('wantToRead').length > 0
+                        ? booksByCategory('wantToRead')
+                            .map(book =>
+                                <Grid item sm={4} xs={6}>
+                                    <Book
+                                        key={book.id}
+                                        title={book.title}
+                                        description={book.description}
+                                        image={book.image}
+                                    />
+                                </Grid>
+                            )
+                        : null
+                    }
+                </Grid>
+
+                {booksByCategory('read').length > 0
+                    ?
+                    <Box>
+                        <Link to="/books/category" className={style.link}><h2 className={style.categoryTitle}>Read</h2></Link>
+                    </Box>
+                    : null
+                }
+
+                <Grid container spacing={3}>
+                    {booksByCategory('read').length > 0
+                        ? booksByCategory('read')
+                            .map(book =>
+                                <Grid item sm={4} xs={6}>
+                                    <Book
+                                        key={book.id}
+                                        title={book.title}
+                                        description={book.description}
+                                        image={book.image}
+                                    />
+                                </Grid>
+                            )
+                        : null
                     }
                 </Grid>
             </Container>

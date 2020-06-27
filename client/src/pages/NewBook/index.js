@@ -61,8 +61,8 @@ function NewBook() {
                                             label="Category"
                                         >
                                             <MenuItem value='reading'>Reading</MenuItem>
-                                            <MenuItem value='readed'>Readed</MenuItem>
                                             <MenuItem value='wantToRead'>Want to read</MenuItem>
+                                            <MenuItem value='read'>Read</MenuItem>
                                         </Select>
                                     </FormControl>
                                 </Grid>  
