@@ -3,6 +3,8 @@ import React from 'react';
 import { Container, Grid, Box } from '@material-ui/core';
 import { Link } from 'react-router-dom'
 
+import { booksByCategory, books } from '../../utils/booksByCategory'
+
 import Book from '../../components/Book'
 import Navbar from '../../components/Navbar'
 
@@ -12,20 +14,30 @@ import readingSvg from '../../assets/images/reading.svg'
 export default function Home() {
     const style = useStyles();
 
-    const booksByCategory = category => {
-        return books.filter(book => book.category === category)
-    }
-
-    const books = [
-        { id: 1, title: 'Clean Code', description: 'Descrição', category: null, image: 'https://m.media-amazon.com/images/I/41SH-SvWPxL.jpg' },
-        { id: 2, title: 'Clean Code', description: 'Descrição', category: null, image: 'https://m.media-amazon.com/images/I/41SH-SvWPxL.jpg' },
-    ]
-
     return (
         <>
             <Navbar />
 
             <Container maxWidth="md" className={style.root}>
+                {books.length > 0
+                    ? null
+                    :
+                    <Grid container spacing={3}>
+                        <Box className={style.noBooksContainer}>
+                            <h2 className={style.noBooksTitle}>No books yet</h2>
+                            <img src={readingSvg} alt="No books" className={style.noBooks} />
+                        </Box>
+                    </Grid>
+                }
+
+                {booksByCategory(null).length > 0
+                    ?
+                    <Box>
+                        <Link to="/books/category" className={style.link}><h2 className={style.categoryTitle}>Books without category</h2></Link>
+                    </Box>
+                    : null
+                }
+
                 <Grid container spacing={3}>
                     {booksByCategory(null).length > 0
                         ? booksByCategory(null)
@@ -39,14 +51,15 @@ export default function Home() {
                                     />
                                 </Grid>
                             )
-                        : <img src={readingSvg} alt="No books" className={style.noBooks} />
+                        : null
+
                     }
                 </Grid>
 
                 {booksByCategory('reading').length > 0
                     ?
                     <Box>
-                        <Link to="/books/category" className={style.link}><h2 className={style.categoryTitle}>Reading</h2></Link>
+                        <Link to="/books/category/reading" className={style.link}><h2 className={style.categoryTitle}>Reading</h2></Link>
                     </Box>
                     : null
                 }
@@ -71,7 +84,7 @@ export default function Home() {
                 {booksByCategory('wantToRead').length > 0
                     ?
                     <Box>
-                        <Link to="/books/category" className={style.link}><h2 className={style.categoryTitle}>Want to read</h2></Link>
+                        <Link to="/books/category/wantToRead" className={style.link}><h2 className={style.categoryTitle}>Want to read</h2></Link>
                     </Box>
                     : null
                 }
@@ -96,7 +109,7 @@ export default function Home() {
                 {booksByCategory('read').length > 0
                     ?
                     <Box>
-                        <Link to="/books/category" className={style.link}><h2 className={style.categoryTitle}>Read</h2></Link>
+                        <Link to="/books/category/read" className={style.link}><h2 className={style.categoryTitle}>Read</h2></Link>
                     </Box>
                     : null
                 }
