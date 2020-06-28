@@ -24,4 +24,7 @@ Run the application
 ## Dependencies
 - create-react-app
 - react-router
+- react-redux
+- redux-localstore
+- immer
 - styled-components

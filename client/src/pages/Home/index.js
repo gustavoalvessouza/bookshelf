@@ -47,7 +47,7 @@ export default function Home() {
                                         key={book.id}
                                         title={book.title}
                                         description={book.description}
-                                        image={book.image}
+                                        imageURL={book.imageURL}
                                     />
                                 </Grid>
                             )
@@ -73,7 +73,7 @@ export default function Home() {
                                         key={book.id}
                                         title={book.title}
                                         description={book.description}
-                                        image={book.image}
+                                        imageURL={book.imageURL}
                                     />
                                 </Grid>
                             )
@@ -98,7 +98,7 @@ export default function Home() {
                                         key={book.id}
                                         title={book.title}
                                         description={book.description}
-                                        image={book.image}
+                                        imageURL={book.imageURL}
                                     />
                                 </Grid>
                             )
@@ -123,7 +123,7 @@ export default function Home() {
                                         key={book.id}
                                         title={book.title}
                                         description={book.description}
-                                        image={book.image}
+                                        imageURL={book.imageURL}
                                     />
                                 </Grid>
                             )
