@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom'
+
 import { Container, Grid, Box } from '@material-ui/core';
 
 import { booksByCategory } from '../../utils/booksByCategory'
@@ -44,24 +46,28 @@ export default function Category(props) {
                         ? booksByCategory(category)
                             .map(book =>
                                 <Grid item sm={4} xs={6}>
-                                    <Book
-                                        key={book.id}
-                                        title={book.title}
-                                        description={book.description}
-                                        imageURL={book.imageURL}
-                                    />
+                                    <Link to={`/book/${book.id}`}>
+                                        <Book
+                                            key={book.id}
+                                            title={book.title}
+                                            description={book.description}
+                                            imageURL={book.imageURL}
+                                        />
+                                    </Link>
                                 </Grid>
                             )
                         :
                         booksByCategory(null)
                             .map(book =>
                                 <Grid item sm={4} xs={6}>
-                                    <Book
-                                        key={book.id}
-                                        title={book.title}
-                                        description={book.description}
-                                        imageURL={book.imageURL}
-                                    />
+                                    <Link to={`/book/${book.id}`}>
+                                        <Book
+                                            key={book.id}
+                                            title={book.title}
+                                            description={book.description}
+                                            imageURL={book.imageURL}
+                                        />
+                                    </Link>
                                 </Grid>
                             )
                     }

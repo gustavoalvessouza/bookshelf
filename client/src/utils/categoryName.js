@@ -4,6 +4,6 @@ const categories = {
     read: 'Read'
 }
 
-export const categoryName = (category) => {
+export const categoryName = category => {
     return categories[category]
 }

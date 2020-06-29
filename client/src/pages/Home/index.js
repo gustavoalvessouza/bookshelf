@@ -43,12 +43,14 @@ export default function Home() {
                         ? booksByCategory(null)
                             .map(book =>
                                 <Grid item sm={4} xs={6}>
-                                    <Book
-                                        key={book.id}
-                                        title={book.title}
-                                        description={book.description}
-                                        imageURL={book.imageURL}
-                                    />
+                                    <Link to={`/book/${book.id}`}>
+                                        <Book
+                                            key={book.id}
+                                            title={book.title}
+                                            description={book.description}
+                                            imageURL={book.imageURL}
+                                        />
+                                    </Link>
                                 </Grid>
                             )
                         : null
@@ -69,12 +71,14 @@ export default function Home() {
                         ? booksByCategory('reading')
                             .map(book =>
                                 <Grid item sm={4} xs={6}>
-                                    <Book
-                                        key={book.id}
-                                        title={book.title}
-                                        description={book.description}
-                                        imageURL={book.imageURL}
-                                    />
+                                    <Link to={`/book/${book.id}`}>
+                                        <Book
+                                            key={book.id}
+                                            title={book.title}
+                                            description={book.description}
+                                            imageURL={book.imageURL}
+                                        />
+                                    </Link>
                                 </Grid>
                             )
                         : null
@@ -94,12 +98,14 @@ export default function Home() {
                         ? booksByCategory('wantToRead')
                             .map(book =>
                                 <Grid item sm={4} xs={6}>
-                                    <Book
-                                        key={book.id}
-                                        title={book.title}
-                                        description={book.description}
-                                        imageURL={book.imageURL}
-                                    />
+                                    <Link to={`/book/${book.id}`}>
+                                        <Book
+                                            key={book.id}
+                                            title={book.title}
+                                            description={book.description}
+                                            imageURL={book.imageURL}
+                                        />
+                                    </Link>
                                 </Grid>
                             )
                         : null
@@ -119,12 +125,14 @@ export default function Home() {
                         ? booksByCategory('read')
                             .map(book =>
                                 <Grid item sm={4} xs={6}>
-                                    <Book
-                                        key={book.id}
-                                        title={book.title}
-                                        description={book.description}
-                                        imageURL={book.imageURL}
-                                    />
+                                    <Link to={`/book/${book.id}`}>
+                                        <Book
+                                            key={book.id}
+                                            title={book.title}
+                                            description={book.description}
+                                            imageURL={book.imageURL}
+                                        />
+                                    </Link>
                                 </Grid>
                             )
                         : null
