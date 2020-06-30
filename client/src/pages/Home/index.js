@@ -11,7 +11,7 @@ import Navbar from '../../components/Navbar'
 import { useStyles } from './styles'
 import readingSvg from '../../assets/images/reading.svg'
 
-export default function Home() {
+function Home() {
     const style = useStyles();
 
     return (
@@ -32,7 +32,7 @@ export default function Home() {
 
                 {booksByCategory(null).length > 0
                     ?
-                    <Box>
+                    <Box className={style.categoryBox}>
                         <Link to="/books/category" className={style.link}><h2 className={style.categoryTitle}>Books without category</h2></Link>
                     </Box>
                     : null
@@ -41,6 +41,7 @@ export default function Home() {
                 <Grid container spacing={3}>
                     {booksByCategory(null).length > 0
                         ? booksByCategory(null)
+                            .sort()
                             .map(book =>
                                 <Grid item sm={4} xs={6}>
                                     <Link to={`/book/${book.id}`}>
@@ -60,7 +61,7 @@ export default function Home() {
 
                 {booksByCategory('reading').length > 0
                     ?
-                    <Box>
+                    <Box className={style.categoryBox}>
                         <Link to="/books/category/reading" className={style.link}><h2 className={style.categoryTitle}>Reading</h2></Link>
                     </Box>
                     : null
@@ -69,6 +70,7 @@ export default function Home() {
                 <Grid container spacing={3}>
                     {booksByCategory('reading').length > 0
                         ? booksByCategory('reading')
+                            .sort()
                             .map(book =>
                                 <Grid item sm={4} xs={6}>
                                     <Link to={`/book/${book.id}`}>
@@ -87,7 +89,7 @@ export default function Home() {
 
                 {booksByCategory('wantToRead').length > 0
                     ?
-                    <Box>
+                    <Box className={style.categoryBox}>
                         <Link to="/books/category/wantToRead" className={style.link}><h2 className={style.categoryTitle}>Want to read</h2></Link>
                     </Box>
                     : null
@@ -96,6 +98,7 @@ export default function Home() {
                 <Grid container spacing={3}>
                     {booksByCategory('wantToRead').length > 0
                         ? booksByCategory('wantToRead')
+                            .sort()
                             .map(book =>
                                 <Grid item sm={4} xs={6}>
                                     <Link to={`/book/${book.id}`}>
@@ -114,7 +117,7 @@ export default function Home() {
 
                 {booksByCategory('read').length > 0
                     ?
-                    <Box>
+                    <Box className={style.categoryBox}>
                         <Link to="/books/category/read" className={style.link}><h2 className={style.categoryTitle}>Read</h2></Link>
                     </Box>
                     : null
@@ -123,6 +126,7 @@ export default function Home() {
                 <Grid container spacing={3}>
                     {booksByCategory('read').length > 0
                         ? booksByCategory('read')
+                            .sort()
                             .map(book =>
                                 <Grid item sm={4} xs={6}>
                                     <Link to={`/book/${book.id}`}>
@@ -142,3 +146,5 @@ export default function Home() {
         </>
     );
 };
+
+export default Home;

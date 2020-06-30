@@ -4,5 +4,5 @@ export const books =
         : []
 
 export const booksById = id => {
-    return books.filter(book => book.id === id)
+    return books.filter(book => book.id === id && book.deleted === false)
 }

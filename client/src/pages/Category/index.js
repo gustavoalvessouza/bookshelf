@@ -13,7 +13,7 @@ import Navbar from '../../components/Navbar'
 import { useStyles } from './styles'
 import emptySvg from '../../assets/images/empty.svg'
 
-export default function Category(props) {
+function Category(props) {
     const { match } = props;
     const style = useStyles();
 
@@ -44,6 +44,7 @@ export default function Category(props) {
                 <Grid container spacing={3}>
                     {booksByCategory(category).length > 0
                         ? booksByCategory(category)
+                            .sort()
                             .map(book =>
                                 <Grid item sm={4} xs={6}>
                                     <Link to={`/book/${book.id}`}>
@@ -58,6 +59,7 @@ export default function Category(props) {
                             )
                         :
                         booksByCategory(null)
+                            .sort()
                             .map(book =>
                                 <Grid item sm={4} xs={6}>
                                     <Link to={`/book/${book.id}`}>
@@ -76,3 +78,5 @@ export default function Category(props) {
         </>
     );
 };
+
+export default Category;

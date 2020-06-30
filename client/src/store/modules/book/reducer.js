@@ -13,6 +13,33 @@ export default function cart(state = initialState, action) {
 
                 draft.push(book)
             })
+        case 'REMOVE_BOOK':
+            return produce(state, draft => {
+                const bookIndex = draft.findIndex(b => b.id === action.bookId)
+
+                if (bookIndex >= 0) {
+                    draft[bookIndex].deleted = true
+                }
+
+            })
+        case 'UPDATE_BOOK':
+            return produce(state, draft => {
+                const bookIndex = draft.findIndex(b => b.id === action.bookId)
+
+                const { book } = action
+
+                console.log(action)
+
+                if (bookIndex >= 0) {
+                    draft[bookIndex].title = book.title
+                    draft[bookIndex].description = book.description
+                    draft[bookIndex].author = book.author
+                    draft[bookIndex].category = book.category
+                    draft[bookIndex].imageURL = book.imageURL
+                    draft[bookIndex].deleted = false
+                }
+
+            })
         default:
             return state
     }

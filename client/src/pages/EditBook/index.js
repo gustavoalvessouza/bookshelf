@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import * as BookActions from '../../store/modules/book/actions';
 
-import { Snackbar } from '@material-ui/core';
-import MuiAlert from '@material-ui/lab/Alert';
+import { bookById } from '../../utils/bookById';
 
-import Navbar from '../../components/Navbar'
+import Navbar from '../../components/Navbar';
 
 import {
     Container,
@@ -22,14 +21,17 @@ import {
     MenuItem
 } from '@material-ui/core';
 
-import { useStyles } from './styles'
+import { Snackbar } from '@material-ui/core';
+import MuiAlert from '@material-ui/lab/Alert';
 
-import addBookIcon from '../../assets/icons/addBook.svg'
+import { useStyles } from './styles';
 
-function NewBook(props) {
+function EditBook(props) {
+    const { match } = props;
     const style = useStyles();
     const dispatch = useDispatch();
 
+    const [bookId, setBookId] = useState(0);
     const [alertOpen, setAlertOpen] = useState(false);
 
     const [title, setTitle] = useState('');
@@ -37,6 +39,23 @@ function NewBook(props) {
     const [author, setAuthor] = useState('');
     const [category, setCategory] = useState(null);
     const [imageURL, setImageURL] = useState('');
+
+    useEffect(() => {
+        const bookId = String(decodeURIComponent(match.params.bookId));
+
+        if (bookId === 'undefined' || bookId === null) {
+            props.history.push('/');
+        }
+
+        const bookData = bookById(Number(bookId))[0];
+
+        setTitle(bookData.title)
+        setDescription(bookData.description)
+        setAuthor(bookData.author)
+        setCategory(bookData.category)
+        setImageURL(bookData.imageURL)
+        setBookId(bookId)
+    }, [])
 
     const handleAlertOpen = () => {
         setAlertOpen(true);
@@ -74,23 +93,20 @@ function NewBook(props) {
         return <MuiAlert elevation={6} variant="filled" {...props} />;
     }
 
-    function handleAddBook() {
+    function handleUpdateBook() {
         const book = {
-            id: Math.round(Math.random() * (99999 - 1) + 1),
             title,
             description,
             author,
             category,
-            imageURL,
-            timestamp: Date.now(),
-            deleted: false
+            imageURL
         }
 
-        dispatch(BookActions.addBook(book));
+        dispatch(BookActions.updateBook(book, bookId))
 
-        handleAlertOpen();
+        handleAlertOpen()
 
-        setTimeout(() => { props.history.push('/'); }, 2000);
+        setTimeout(() => { props.history.push(`/book/${bookId}`); }, 2000)
     }
 
     return (
@@ -98,12 +114,12 @@ function NewBook(props) {
             <Navbar />
 
             <Container maxWidth="md" className={style.root}>
-                <img src={addBookIcon} className={style.addBookIcon} alt="New Book Icon" />
+                <img src={imageURL} className={style.addBookIcon} alt="New Book Icon" />
 
                 <Card style={{ width: '100%' }}>
                     <CardContent>
                         <Typography variant="h6" noWrap>
-                            Add a new book to yours
+                            Edit your book
                             </Typography>
 
                         <form noValidate autoComplete="off">
@@ -112,6 +128,7 @@ function NewBook(props) {
                                     <TextField
                                         id="outlined-basic"
                                         label="Book title"
+                                        value={title}
                                         variant="outlined"
                                         className={style.form}
                                         onChange={handleAddTitle}
@@ -122,6 +139,7 @@ function NewBook(props) {
                                     <TextField
                                         id="outlined-basic"
                                         label="Description"
+                                        value={description}
                                         variant="outlined"
                                         className={style.form}
                                         onChange={handleAddDescription}
@@ -132,6 +150,7 @@ function NewBook(props) {
                                     <TextField
                                         id="outlined-basic"
                                         label="Author"
+                                        value={author}
                                         variant="outlined"
                                         className={style.form}
                                         onChange={handleAddAuthor}
@@ -142,6 +161,7 @@ function NewBook(props) {
                                     <TextField
                                         id="outlined-basic"
                                         label="Image URL"
+                                        value={imageURL}
                                         variant="outlined"
                                         className={style.form}
                                         onChange={handleAddImageURL}
@@ -169,16 +189,16 @@ function NewBook(props) {
                             variant="contained"
                             color="primary"
                             className={style.addButton}
-                            onClick={handleAddBook}
+                            onClick={handleUpdateBook}
                         >
-                            Add
+                            Save
                         </Button>
                     </CardContent>
                 </Card>
 
                 <Snackbar open={alertOpen} autoHideDuration={4000} onClose={handleAlertClose}>
                     <Alert onClose={handleAlertClose} severity="success">
-                        Book added with success!
+                        Book edited with success!
                     </Alert>
                 </Snackbar>
             </Container>
@@ -186,4 +206,4 @@ function NewBook(props) {
     )
 }
 
-export default NewBook;
+export default EditBook;

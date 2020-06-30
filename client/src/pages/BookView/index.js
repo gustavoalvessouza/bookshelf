@@ -1,4 +1,9 @@
 import React, { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
+
+import { Link } from 'react-router-dom'
+
+import * as BookActions from '../../store/modules/book/actions'
 
 import {
     Container,
@@ -6,8 +11,13 @@ import {
     Card,
     CardContent,
     CardMedia,
-    Typography
+    Typography,
+    Button,
+    Box
 } from '@material-ui/core';
+
+import { Snackbar } from '@material-ui/core';
+import MuiAlert from '@material-ui/lab/Alert';
 
 import { booksById } from '../../utils/booksById'
 
@@ -16,11 +26,15 @@ import Comments from '../../components/Comments'
 
 import { useStyles } from './styles'
 
-export default function Book(props) {
+function Book(props) {
     const { match } = props;
+    const dispatch = useDispatch();
     const style = useStyles();
 
-    const [book, setBook] = useState({})
+    const [alertOpen, setAlertOpen] = useState(false);
+
+    const [book, setBook] = useState({});
+    const [bookId, setBookId] = useState(0);
 
     useEffect(() => {
         const bookId = String(decodeURIComponent(match.params.bookId));
@@ -32,7 +46,32 @@ export default function Book(props) {
         const bookData = booksById(Number(bookId))[0];
 
         setBook(bookData)
+        setBookId(bookId)
     }, [])
+
+    const handleAlertOpen = () => {
+        setAlertOpen(true);
+    }
+
+    const handleAlertClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setAlertOpen(false);
+    }
+
+    function Alert(props) {
+        return <MuiAlert elevation={6} variant="filled" {...props} />;
+    }
+
+    function handleRemoveBook() {
+        dispatch(BookActions.removeBook(book.id))
+
+        handleAlertOpen()
+
+        setTimeout(() => { props.history.push('/'); }, 2000)
+    }
 
     return (
         <>
@@ -45,6 +84,27 @@ export default function Book(props) {
                             className={style.media}
                             image={book.imageURL}
                         />
+
+                        <Box style={{ marginTop: '10px' }}>
+                            <Button
+                                variant="contained"
+                                color="secondary"
+                                onClick={handleRemoveBook}
+                                className={style.removeButton}
+                                disableElevation
+                            >
+                                Delete
+                            </Button>
+
+                            <Link to={`/edit/${bookId}`} style={{ textDecoration: 'none' }}>
+                                <Button
+                                    variant="contained"
+                                    disableElevation
+                                >
+                                    Edit
+                            </Button>
+                            </Link>
+                        </Box>
                     </Grid>
 
                     <Grid item sm={8} xs={12} >
@@ -70,7 +130,15 @@ export default function Book(props) {
                 </Grid>
 
                 <Comments book={book} />
+
+                <Snackbar open={alertOpen} autoHideDuration={4000} onClose={handleAlertClose}>
+                    <Alert onClose={handleAlertClose} severity="success">
+                        Book was deleted with success!
+                    </Alert>
+                </Snackbar>
             </Container>
         </>
     )
 }
+
+export default Book;

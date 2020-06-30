@@ -59,6 +59,8 @@ export default function Comments({ book }) {
         dispatch(CommentActions.addComment(comment))
 
         clearInputs()
+
+        window.location.reload()
     }
 
     return (
