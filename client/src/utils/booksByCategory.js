@@ -4,5 +4,7 @@ export const books =
         : []
 
 export const booksByCategory = category => {
-    return books.filter(book => book.category === category && book.deleted === false)
+    return books
+        .sort((a, b) => a.title.localeCompare(b.title))
+        .filter(book => book.category === category && book.deleted === false)
 }
