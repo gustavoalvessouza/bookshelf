@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import * as BookActions from '../../store/modules/book/actions';
 
-import { bookById } from '../../utils/bookById';
+import { booksById } from '../../utils/booksById';
 
 import Navbar from '../../components/Navbar';
 
@@ -46,7 +46,7 @@ function EditBook(props) {
             props.history.push('/');
         }
 
-        const bookData = bookById(Number(bookId))[0];
+        const bookData = booksById(Number(bookId))[0];
 
         setTitle(bookData.title)
         setDescription(bookData.description)

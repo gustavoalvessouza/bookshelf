@@ -1,8 +1,4 @@
-const categories = {
-    reading: 'Reading',
-    wantToRead: 'Want to read',
-    read: 'Read'
-}
+import { categories } from '../datas'
 
 export const categoryName = category => {
     return categories[category]

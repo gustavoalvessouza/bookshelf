@@ -3,7 +3,8 @@ import React from 'react';
 import { Container, Grid, Box } from '@material-ui/core';
 import { Link } from 'react-router-dom'
 
-import { booksByCategory, books } from '../../utils/booksByCategory'
+import { books } from '../../datas'
+import { booksByCategory } from '../../utils/booksByCategory'
 
 import Book from '../../components/Book'
 import Navbar from '../../components/Navbar'
