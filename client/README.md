@@ -28,3 +28,4 @@ Run the application
 - redux-localstore
 - immer
 - styled-components
+- material-ui
