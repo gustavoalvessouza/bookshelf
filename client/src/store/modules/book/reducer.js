@@ -28,8 +28,6 @@ export default function cart(state = initialState, action) {
 
                 const { book } = action
 
-                console.log(action)
-
                 if (bookIndex >= 0) {
                     draft[bookIndex].title = book.title
                     draft[bookIndex].description = book.description

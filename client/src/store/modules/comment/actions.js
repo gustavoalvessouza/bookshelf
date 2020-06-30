@@ -4,3 +4,10 @@ export function addComment(comment) {
         comment
     }
 }
+
+export function removeComment(commentId) {
+    return { 
+        type: 'REMOVE_COMMENT', 
+        commentId
+    }
+}

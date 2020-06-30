@@ -15,8 +15,11 @@ import {
     ListItemAvatar,
     ListItemText,
     Avatar,
-    TextField
+    TextField,
+    Button
 } from '@material-ui/core'
+
+import HighlightOffOutlinedIcon from '@material-ui/icons/HighlightOffOutlined';
 
 import { useStyles } from './styles'
 
@@ -63,6 +66,12 @@ export default function Comments({ book }) {
 
             window.location.reload()
         }
+    }
+
+    function handleRemoveComment(commentId) {
+        dispatch(CommentActions.removeComment(commentId))
+
+        window.location.reload()
     }
 
     return (
@@ -124,6 +133,16 @@ export default function Comments({ book }) {
                                             </React.Fragment>
                                         }
                                     />
+
+                                    <Button
+                                        variant="contained"
+                                        disableElevation
+                                        color="secondary"
+                                        onClick={() => handleRemoveComment(comment.id)}
+                                    >
+                                        <HighlightOffOutlinedIcon />
+                                    </Button>
+                                    
                                 </ListItem>
                             )
                         }
