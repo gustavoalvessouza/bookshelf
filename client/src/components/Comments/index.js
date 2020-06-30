@@ -15,7 +15,7 @@ import {
     ListItemAvatar,
     ListItemText,
     Avatar,
-    TextField,
+    TextField
 } from '@material-ui/core'
 
 import { useStyles } from './styles'
@@ -56,11 +56,13 @@ export default function Comments({ book }) {
             author
         }
 
-        dispatch(CommentActions.addComment(comment))
+        if (author !== '' && body !== '') {
+            dispatch(CommentActions.addComment(comment))
 
-        clearInputs()
+            clearInputs()
 
-        window.location.reload()
+            window.location.reload()
+        }
     }
 
     return (
