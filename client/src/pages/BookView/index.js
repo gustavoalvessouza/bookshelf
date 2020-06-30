@@ -45,6 +45,10 @@ function Book(props) {
 
         const bookData = booksById(Number(bookId))[0];
 
+        if (String(bookData) == 'undefined') {
+            props.history.push('/');
+        }
+
         setBook(bookData)
         setBookId(bookId)
     }, [])

@@ -48,11 +48,15 @@ function EditBook(props) {
 
         const bookData = booksById(Number(bookId))[0];
 
-        setTitle(bookData.title)
-        setDescription(bookData.description)
-        setAuthor(bookData.author)
-        setCategory(bookData.category)
-        setImageURL(bookData.imageURL)
+        if (String(bookData) == 'undefined') {
+            props.history.push('/');
+        } else {
+            setTitle(bookData.title)
+            setDescription(bookData.description)
+            setAuthor(bookData.author)
+            setCategory(bookData.category)
+            setImageURL(bookData.imageURL)
+        }
     }, [])
 
     const handleAlertOpen = () => {
