@@ -39,7 +39,7 @@ function Book(props) {
     useEffect(() => {
         const bookId = String(decodeURIComponent(match.params.bookId));
 
-        if (bookId === 'undefined' || bookId === null) {
+        if (bookId == 'undefined' || bookId == null) {
             props.history.push('/');
         }
 

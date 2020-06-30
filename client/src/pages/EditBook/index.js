@@ -31,19 +31,18 @@ function EditBook(props) {
     const style = useStyles();
     const dispatch = useDispatch();
 
-    const [bookId, setBookId] = useState(0);
     const [alertOpen, setAlertOpen] = useState(false);
 
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [author, setAuthor] = useState('');
-    const [category, setCategory] = useState(null);
+    const [category, setCategory] = useState('');
     const [imageURL, setImageURL] = useState('');
 
     useEffect(() => {
         const bookId = String(decodeURIComponent(match.params.bookId));
 
-        if (bookId === 'undefined' || bookId === null) {
+        if (bookId == 'undefined' || bookId == null) {
             props.history.push('/');
         }
 
@@ -54,7 +53,6 @@ function EditBook(props) {
         setAuthor(bookData.author)
         setCategory(bookData.category)
         setImageURL(bookData.imageURL)
-        setBookId(bookId)
     }, [])
 
     const handleAlertOpen = () => {
@@ -102,11 +100,11 @@ function EditBook(props) {
             imageURL
         }
 
-        dispatch(BookActions.updateBook(book, bookId))
+        dispatch(BookActions.updateBook(book, Number(decodeURIComponent(match.params.bookId))))
 
         handleAlertOpen()
 
-        setTimeout(() => { props.history.push(`/book/${bookId}`); }, 2000)
+        setTimeout(() => { props.history.push(`/book/${Number(decodeURIComponent(match.params.bookId))}`); }, 2000)
     }
 
     return (
